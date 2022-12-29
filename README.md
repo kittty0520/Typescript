@@ -1,1 +1,1 @@
-# Typescript
+# Typescript 강의
