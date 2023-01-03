@@ -1,20 +1,7 @@
-interface PhoneNumberDictionary {
-  [phone: string]: {
-    num: number;
-  };
-}
+//특정 객체의 키를 정의하지 않았을때 여러가지 키값을 받고싶을때 사용하는 방법
 
-interface Contact {
-  name: string;
-  address: string;
-  phones: PhoneNumberDictionary;
-}
+import {Contact, PhoneType } from './types';
 
-enum PhoneType {
-  Home = 'home',
-  Office = 'office',
-  Studio = 'studio',
-}
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
 function fetchContacts() :Promise<Contact[]>{
@@ -66,8 +53,7 @@ class AddressBook {
 
   constructor() {
     this.fetchData();
-    this.findContactByPhone(PhoneType.Home);
-
+    this.findContactByPhone(2135486, PhoneType.Home);
   }
 
   fetchData() :void {
@@ -86,22 +72,22 @@ class AddressBook {
   }
 
   //home, office, studio
-  findContactByPhone(phoneNumber:number, phoneType: PhoneType): Contact[] {
+  findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
     return this.contacts.filter(
       contact => contact.phones[phoneType].num === phoneNumber
     );
   }
 
-
-  addContact(contact:Contact) {
+  addContact(contact:Contact) :void {
     this.contacts.push(contact);
   }
 
-  displayListByName() {
+  //name 프로퍼티만 들어간 배열이 반환됨
+  displayListByName(): string[]{
     return this.contacts.map(contact => contact.name);
   }
 
-  displayListByAddress() {
+  displayListByAddress() : string[]{
     return this.contacts.map(contact => contact.address);
   }
   /* ------------------------------------------------ */
