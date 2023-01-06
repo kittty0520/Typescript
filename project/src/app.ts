@@ -1,5 +1,13 @@
+// 라이브러리 로딩
+//import 변수명 from '라이브러리 이름'
+
+// 변수, 함수 임포터 문법
+//import {} from '파일 상대 경로';
+import axios from 'axios';
+import { Chart } from 'chart.js';
+
 // utils
-function $(selector: string) {
+function $(selector: string): Element {
   return document.querySelector(selector);
 }
 function getUnixTimestamp(date: Date) {
@@ -8,7 +16,7 @@ function getUnixTimestamp(date: Date) {
 
 // DOM
 const confirmedTotal = $('.confirmed-total') as HTMLSpanElement;
-const deathsTotal = $('.deaths'); //타입 단언을 통해 반환되는 타입결정
+const deathsTotal = $('.deaths') as HTMLParagraphElement; //타입 단언을 통해 반환되는 타입결정
 const recoveredTotal = $('.recovered') as HTMLParagraphElement;
 const lastUpdatedTime = $('.last-updated-time') as HTMLParagraphElement;
 const rankList = $('.rank-list');
